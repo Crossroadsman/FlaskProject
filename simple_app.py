@@ -1,5 +1,7 @@
 from flask import Flask
 
+from flask import request # global object
+
 # Create a new Flask instance (passing the current namespace to the Flask initializer)
 app = Flask(__name__)
 
@@ -9,8 +11,16 @@ app = Flask(__name__)
 # (here `index()`) in order to modify the latter's behaviour.
 # It replaces the latter function with the result of calling the former function and passing the latter function to it.
 @app.route('/')
-def index():
-    return "Hello, world"
+def index(name='Default Person'):
+    
+    # request is a global object and represents the query string (if any) included in the url
+    # the components of the query string are in a dictionary-like structure
+    # and we can access these using the .get(key, default=None) method
+    # 
+    # Here, if there is a 'name' argument, we take that, otherwise we get the existing name variable
+    # and put that into the name variable.
+    name = request.args.get('name', name)
+    return "Hello {}".format(name)
 
 # run the app
 # `debug=True`: automatically restart the server if there is an error
