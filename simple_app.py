@@ -19,6 +19,9 @@ def index(name='Default Person'):
     # 
     # Here, if there is a 'name' argument, we take that, otherwise we get the existing name variable
     # and put that into the name variable.
+    #
+    # So if we access the page 127.0.0.1:localhost without a query string, we'll get 'Hello Default Person'
+    # If we access the page 127.0.0.1:localhost/?name=SpecialPerson, we'll get 'Hello SpecialPerson'
     name = request.args.get('name', name)
     return "Hello {}".format(name)
 
