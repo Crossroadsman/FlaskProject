@@ -10,7 +10,14 @@ app = Flask(__name__)
 # A decorator is a way of wrapping a function (here `app.route('/')`) around another function
 # (here `index()`) in order to modify the latter's behaviour.
 # It replaces the latter function with the result of calling the former function and passing the latter function to it.
+#
+# We can have multiple decorators for a single function.
+# Flask is designed to be able to handle multiple routes (using multiple decorators) with a single view
+#
+# In the second decorator we have created a capture group, called `name`.
+# What this means is that Flask will take whatever the string after the `/` is and put it into the `name` variable.
 @app.route('/')
+@app.route('/<name>')
 def index(name='Default Person'):
     
     # request is a global object and represents the query string (if any) included in the url
