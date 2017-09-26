@@ -29,6 +29,26 @@ def index(name='Default Person'):
     # the index function that the route is wrapping.
     return "Hello {}.".format(name)
 
+# We can add a second route, but note that the first route applies first
+# If we load the site localhost:8000/1
+#
+# It will call index with the name '1'
+#
+# This route is only called when there are /-separated components or uri
+# 
+# Note also that the route does not do any type-conversion, so even though we are passing ints, they are handled as strings
+# Accordingly, to make the add function work as expected, we need to do type conversion
+@app.route('/<num1>/<num2>')
+def add(num1, num2): # note that the parameter names here must match the names in the wrapper
+   
+    try:
+        num1_int = int(num1)
+        num2_int = int(num2)
+        return "{} + {} = {}".format(num1, num2, num1_int + num2_int) 
+    except ValueError:
+        return "This would be better if you used numbers, but we can concatenate strings:\n{} + {} = {}".format(num1, num2, num1 + num2)
+
+
 # run the app
 # `debug=True`: automatically restart the server if there is an error
 # `port=8000`: listen on port 8000 (a common port for web servers)
