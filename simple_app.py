@@ -1,6 +1,6 @@
 from flask import Flask
 
-from flask import request # global object
+from flask import request # `request` is a global object that can be used to access the query string of a url
 
 # Create a new Flask instance (passing the current namespace to the Flask initializer)
 app = Flask(__name__)
@@ -23,7 +23,19 @@ def index(name='Default Person'):
     # So if we access the page 127.0.0.1:localhost without a query string, we'll get 'Hello Default Person'
     # If we access the page 127.0.0.1:localhost/?name=SpecialPerson, we'll get 'Hello SpecialPerson'
     name = request.args.get('name', name)
-    return "Hello {}".format(name)
+
+    pet = request.args.get('pet', None)
+
+    first_line = "Hello {}.".format(name)
+    second_line = None
+    if pet == None:
+        second_line = "I understand you don't have a pet at the moment, have you considered getting a labrador? They are the best."
+    elif pet == 'labrador':
+        second_line = "You have a labrador! What a great choice! They are the best, aren't they?"
+    else:
+        second_line = "Ah, so you have a {}.".format(pet)
+
+    return first_line + "\n" + second_line
 
 # run the app
 # `debug=True`: automatically restart the server if there is an error
