@@ -47,8 +47,15 @@ def add(num1, num2): # note that the parameter names here must match the names i
     except ValueError:
         return "This would be better if you used numbers, but we can concatenate strings:\n{} + {} = {}".format(num1, num2, num1 + num2)
     else:
-        return "{} + {] = {}".format(num1, num2, num1_int + num2_int)
+        return "{} + {} = {}".format(num1, num2, num1_int + num2_int)
 
+# This works similarly to the add function, but we move the type checking into the route instead of the view
+# Note that the route only matches if the url components can be validated as the specified type.
+# Accordingly, if there isn't another route that can handle a url structured `/mult/x/y` where x or y are not ints
+# Then the server will return a 404
+@app.route('/mult/<int:num1>/<int:num2>')
+def mult(num1, num2):
+    return "{} x {} = {}".format(num1, num2, num1 * num2)
 
 # run the app
 # `debug=True`: automatically restart the server if there is an error
