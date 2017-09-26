@@ -57,6 +57,19 @@ def add(num1, num2): # note that the parameter names here must match the names i
 def mult(num1, num2):
     return "{} x {} = {}".format(num1, num2, num1 * num2)
 
+@app.route('/num/check/<float:num>')
+@app.route('/num/check/<int:num>')
+def numcheck(num):
+    num_type = None
+    if type(num) == int:
+        num_type = 'int'
+    elif type(num) == float:
+        num_type = 'float'
+    else:
+        num_type = "unknown type: {}".format(type(num))
+    return "route determined that {} is a number, specifically a {}.".format(num, num_type)
+
+
 # run the app
 # `debug=True`: automatically restart the server if there is an error
 # `port=8000`: listen on port 8000 (a common port for web servers)
