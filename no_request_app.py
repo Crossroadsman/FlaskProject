@@ -53,6 +53,8 @@ def add(num1, num2): # note that the parameter names here must match the names i
 # Note that the route only matches if the url components can be validated as the specified type.
 # Accordingly, if there isn't another route that can handle a url structured `/mult/x/y` where x or y are not ints
 # Then the server will return a 404
+#
+# Note also that there can't be a gap between the type signature `int:` and the variable name `num1`
 @app.route('/mult/<int:num1>/<int:num2>')
 def mult(num1, num2):
     return "{} x {} = {}".format(num1, num2, num1 * num2)
