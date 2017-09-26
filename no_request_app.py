@@ -44,9 +44,10 @@ def add(num1, num2): # note that the parameter names here must match the names i
     try:
         num1_int = int(num1)
         num2_int = int(num2)
-        return "{} + {} = {}".format(num1, num2, num1_int + num2_int) 
     except ValueError:
         return "This would be better if you used numbers, but we can concatenate strings:\n{} + {} = {}".format(num1, num2, num1 + num2)
+    else:
+        return "{} + {] = {}".format(num1, num2, num1_int + num2_int)
 
 
 # run the app
