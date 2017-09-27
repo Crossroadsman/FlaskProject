@@ -53,7 +53,10 @@ def add(num1, num2): # note that the parameter names here must match the names i
     else:
         # note: render_template is the flask function that allows us to return html pages saved in the `templates` subdirectory
         num_total = num1_int + num2_int
-        return render_template("add.html", num1=num1, num2=num2, num_total=num_total)
+
+        # by convention we call this variable `context`, but it can be given any valid python variable name
+        context = {'num1':num1, "num2" : num2, 'num_total' : num_total }
+        return render_template("add.html", **context)
 
 # This works similarly to the add function, but we move the type checking into the route instead of the view
 # Note that the route only matches if the url components can be validated as the specified type.
