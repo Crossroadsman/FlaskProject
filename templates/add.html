@@ -1,12 +1,11 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Adder</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <h1>Adder</h1>
+{% extends "layout.html" %}
 
+{% block title %}
+Adder
+{% endblock %}
+
+{% block content %}
+<h1>Adder</h1>
     <!--
       Note: Flask uses a templating engine called jinja2
       (http://jinja.pocoo.org)
@@ -21,5 +20,4 @@
      -->
     <p>You provided <em>{{num1}}</em> and <em>{{ num2 }}</em></p>
     <p>The sum of these is <strong>{{ num_total }}</strong></p>
-  </body>
-</html>
+{% endblock %}

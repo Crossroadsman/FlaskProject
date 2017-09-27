@@ -1,12 +1,8 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hello {{ name }}</title>
-  </head>
+{% extends "layout.html" %}
 
-  <body>
+{% block title %}Hello {{ name }}{% endblock %}
+
+{% block content %}
     <h1>Hello</h1>
     <p>Hello {{ name }}, welcome to the site.</p>
-  </body>
-</html>
+{% endblock %}
