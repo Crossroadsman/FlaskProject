@@ -31,7 +31,9 @@ def index(name='Default Person'):
     #
     # If, instead, the uri has some value after the `/` then that value gets put into the name local variable which is passed into
     # the index function that the route is wrapping.
-    return "Hello {}.".format(name)
+    name = name.title()
+    context = {'name': name}
+    return render_template("index.html", **context)
 
 # We can add a second route, but note that the first route applies first
 # If we load the site localhost:8000/1
