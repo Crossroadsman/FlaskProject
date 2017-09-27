@@ -1,5 +1,9 @@
 from flask import Flask
 
+# `render_template` gives views the ability to return html pages that are stored in the `templates` subdirectory
+from flask import render_template
+
+
 # In this version we are not using requests because we are not handling a query string.
 # Instead we are using Flask to process the text trailing the `/` to determine what should
 # be put into the response.
@@ -47,20 +51,8 @@ def add(num1, num2): # note that the parameter names here must match the names i
     except ValueError:
         return "This would be better if you used numbers, but we can concatenate strings:\n{} + {} = {}".format(num1, num2, num1 + num2)
     else:
-        # note: triple-quotes allow us to preserve line breaks (in the return statement above the `\n` gets stripped
-        return """
-            <!doctype html>
-            <html>
-              <head>
-                <title>Adding</title>
-                <meta charset="utf-8">
-              </head>
-              <body>
-                <h1>Adding</h1>
-                <p><em>{}</em> + <em>{}</em> = <strong>{}</strong></p>
-              </body>
-            </html>
-        """.format(num1, num2, num1_int + num2_int)
+        # note: render_template is the flask function that allows us to return html pages saved in the `templates` subdirectory
+        return render_template("add.html")
 
 # This works similarly to the add function, but we move the type checking into the route instead of the view
 # Note that the route only matches if the url components can be validated as the specified type.
