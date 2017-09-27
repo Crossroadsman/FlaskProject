@@ -3,7 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}Alex's Flask Demo | {% endblock %}</title>
-    <link rel="stylesheet" href="/static/styles.css">
+
+    <!-- Note that browsers typically cache the stylesheet and as long
+         as the url for the stylesheet stays the same, the browser won't
+         know to invalidate the cache.
+
+         Accordingly, the recommended workaround is to add a query string
+         to the css link with the timestamp of the change made to the css.
+
+         The browser will see the url has changed, even though the change is
+         only a query string, and will reload the stylesheet.
+
+         See: https://stackoverflow.com/questions/21714653/flask-css-not-updating -->
+    <link rel="stylesheet" href="/static/styles.css?q=20170927.1700">
   </head>
   <body>
     {% block content %}{% endblock %}
