@@ -6,7 +6,20 @@
   </head>
   <body>
     <h1>Adder</h1>
-    <p>You provided <em>num1</em> and <em>num2</em></p>
-    <p>The sum of these is <strong>total</strong></p>
+
+    <!--
+      Note: Flask uses a templating engine called jinja2
+      (http://jinja.pocoo.org)
+      The double braces are part of the jinja syntax
+
+      observe that the spaces within the double braces are optional
+
+      also note that we can include python code in the double braces
+      so if we knew num1 and num2 were of the right type, we could
+      put `num1 + num2` in the results curly braces to get this
+      to be computed here.
+     -->
+    <p>You provided <em>{{num1}}</em> and <em>{{ num2 }}</em></p>
+    <p>The sum of these is <strong>{{ num_total }}</strong></p>
   </body>
 </html>
