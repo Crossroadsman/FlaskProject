@@ -34,7 +34,12 @@ def save():
     response = flask.make_response( flask.redirect( flask.url_for('index') ) )
 
     # make the cookie:
-    response.set_cookie('character', json.dumps(form_items_dict) )
+    # `.dumps(x)` ('dumps' means dump a json-formatted string) where x is a valid python object (dict/tuple(and list)/str/int/float/True/False/None)
+    cookie_data = json.dumps(form_items_dict)
+
+    ## (the first argument is the cookie name
+    #  the second argument is the json object whose data to store in the cookie)
+    response.set_cookie('avatar', cookie_data )
 
     return response
 
