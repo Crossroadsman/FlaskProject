@@ -7,7 +7,10 @@
 
 <!-- action is the destination url for the request -->
 <!-- method is the HTTP method (always POST?) -->
-<form action="" method="POST">
+
+<!-- instead of hard coding the destination url, we can tell index to look back at the application code for what the target destination is,
+     in this case we want the url that the save function is directed to -->
+<form action={{ url_for('save') }} method="POST">
   <label>Name your avatar</label>
   <input type="text" name="name" value="" autofocus>
   <input type="submit" value="Build my avatar!">
