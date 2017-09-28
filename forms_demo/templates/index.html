@@ -2,4 +2,15 @@
 
 {% block title %}Home{% endblock %}
 
-{% block content %}Welcome to this demo site illustrating the use of forms.{% endblock %}
+{% block content %}
+<p>Welcome to this demo site illustrating the use of forms.</p>
+
+<!-- action is the destination url for the request -->
+<!-- method is the HTTP method (always POST?) -->
+<form action="" method="POST">
+  <label>Name your avatar</label>
+  <input type="text" name="name" value="" autofocus>
+  <input type="submit" value="Build my avatar!">
+</form>
+{% endblock %}
+
