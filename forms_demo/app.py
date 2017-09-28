@@ -20,6 +20,8 @@ def save():
     else:
         print("{} is a nice name. I like it.".format(name))
 
-    return "process completed"
+    # `redirect` is used to redirect to another url
+    # in this case, the url that is derived by following the `index` function
+    return flask.redirect(flask.url_for('index'))
 
 app.run(debug=True, host='0.0.0.0', port=8000)
