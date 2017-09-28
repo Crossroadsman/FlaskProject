@@ -1,4 +1,7 @@
+import json
+
 import flask
+
 
 app = flask.Flask(__name__)
 
@@ -20,8 +23,14 @@ def save():
     else:
         print("{} is a nice name. I like it.".format(name))
 
+    # Previously we created the response in the return statement
+    # But we need the response to send the cookie, so we need to move
+    # the response creation out of the return statement
+    #
     # `redirect` is used to redirect to another url
     # in this case, the url that is derived by following the `index` function
-    return flask.redirect(flask.url_for('index'))
+    response = flask.make_response( flask.redirect( flask.url_for('index') ) )
+
+    return response
 
 app.run(debug=True, host='0.0.0.0', port=8000)
