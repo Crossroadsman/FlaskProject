@@ -13,7 +13,7 @@ def index():
 @app.route('/save', methods=['POST'])
 def save():
 
-    name = flask.request.args.get('name', None)
+    name = flask.request.form.get('name', None)
 
     if name == None:
         print("You forgot to add a name")
