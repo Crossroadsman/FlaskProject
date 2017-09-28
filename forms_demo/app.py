@@ -2,12 +2,40 @@ import json
 
 import flask
 
-
 app = flask.Flask(__name__)
+
+cookie_name = 'avatar'
+
+
+def get_saved_data():
+    """reads a cookie, if one is set, and then converts the json-formatted cookie data to a valid python object, which is then returned"""
+    cookie_data = None
+    try:
+        cookie_data = flask.request.cookies.get(cookie_name)
+    except:
+        print("Failed to get cookie")
+        print("leaving cookie_data blank")
+
+    try:
+        data = json.loads(cookie_data)
+    except TypeError:
+        print("Failed to convert cookie data from json string to python object")
+        print("This is what the cookie data looked like:")
+        print(cookie_data)
+        print("making `data` an empty dict")
+        data = {}
+    
+    return data
+
+    
+
 
 @app.route('/')
 def index():
-    return flask.render_template('index.html')
+    saved_data = get_saved_data()
+    context = {'saves' : saved_data}
+
+    return flask.render_template('index.html', **context)
 
 # Here we are creating a route and a method to handle a user submitting the call to action button on the index page
 #
@@ -18,7 +46,11 @@ def save():
 
     form_items = flask.request.form.items() # this object is not exactly a dictionary, it is 'immutablemultidict'
     form_items_dict = dict(form_items)
-    name = form_items_dict['name']
+
+    existing_data = get_saved_data() # from the cookie
+    existing_data.update(form_items_dict) # add/update any newer data from the form into the existing_data
+
+    name = existing_data['name']
 
     if name == None:
         print("You forgot to add a name")
@@ -35,11 +67,12 @@ def save():
 
     # make the cookie:
     # `.dumps(x)` ('dumps' means dump a json-formatted string) where x is a valid python object (dict/tuple(and list)/str/int/float/True/False/None)
-    cookie_data = json.dumps(form_items_dict)
+    cookie_data = json.dumps(existing_data)
+
 
     ## (the first argument is the cookie name
     #  the second argument is the json object whose data to store in the cookie)
-    response.set_cookie('avatar', cookie_data )
+    response.set_cookie(cookie_name, cookie_data )
 
     return response
 
