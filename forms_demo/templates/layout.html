@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flask Forms Demo | {% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.min.css?q=20170928.1355">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css?q=20170928.1355">
+  </head>
+
+  <body>
+    <header>
+      <!-- Note, to reuse a block defined previously, we use the special variable self.<blockname>() -->
+      <h1>{{ self.title() }}</h1>
+    </header>
+    <section>
+      {% block content %}
+      {% endblock %}
+    </section>
+    <footer>Copyright Alex Koumparos 2017</footer>
+  </body>
+</html>
