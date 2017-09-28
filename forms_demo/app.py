@@ -16,7 +16,9 @@ def index():
 @app.route('/save', methods=['POST'])
 def save():
 
-    name = flask.request.form.get('name', None)
+    form_items = flask.request.form.items() # this object is not exactly a dictionary, it is 'immutablemultidict'
+    form_items_dict = dict(form_items)
+    name = form_items_dict['name']
 
     if name == None:
         print("You forgot to add a name")
@@ -30,6 +32,9 @@ def save():
     # `redirect` is used to redirect to another url
     # in this case, the url that is derived by following the `index` function
     response = flask.make_response( flask.redirect( flask.url_for('index') ) )
+
+    # make the cookie:
+    response.set_cookie('character', json.dumps(form_items_dict) )
 
     return response
 
