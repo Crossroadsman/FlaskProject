@@ -80,7 +80,7 @@ def save():
     #
     # `redirect` is used to redirect to another url
     # in this case, the url that is derived by following the `index` function
-    response = flask.make_response( flask.redirect( flask.url_for('index') ) )
+    response = flask.make_response( flask.redirect( flask.url_for('builder') ) )
 
     # make the cookie:
     # `.dumps(x)` ('dumps' means dump a json-formatted string) where x is a valid python object (dict/tuple(and list)/str/int/float/True/False/None)

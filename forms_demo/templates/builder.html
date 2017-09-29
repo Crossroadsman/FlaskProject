@@ -1,19 +1,33 @@
 {% extends "layout.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Builder{% endblock %}
 
 {% block content %}
 <p>This is the builder page</p>
+<p>I have access to DEFAULTS. Here is a snippet: {{ options.get('colours', "uh oh, I couldn't find colours") }}</p>
 
-<!-- action is the destination url for the request -->
-<!-- method is the HTTP method (always POST?) -->
+<!-- builder area -->
 
 <!-- instead of hard coding the destination url, we can tell index to look back at the application code for what the target destination is,
      in this case we want the url that the save function is directed to -->
-<form action={{ url_for('save') }} method="POST">
-  <label>Name your avatar</label>
-  <input type="text" name="name" value="{{ saves.get('name', '')  }}" autofocus>
-  <input type="submit" value="Build my avatar!">
+
+<!-- action is the destination url for the request -->
+<!-- method is the HTTP method (always POST?) -->
+<form action="" method="POST">
+  <input type="text" value="name" value="{{ saves.get('name', '') }}">
+  
+  <!--  Observe that we can execute python code in a code block:
+
+        Notice how the blocks flow into the html and how we can flow into a block from within a string
+
+        Also notice the absence of `:` when creating the for loop and the if -->
+  {% for colour in options['colours']  %}
+      <input type="radio" id="{{colour}}" name="colours" value="{{colour}}"
+      {% if saves.get('colour') == colour %}checked{% endif %}>
+      <label for="{{color}}"> </label>
+  {% endfor %}
+  <button>Update</button>
 </form>
+
 {% endblock %}
 

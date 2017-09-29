@@ -1,7 +1,49 @@
 h1 {
-  color: 'darkblue';
+  color: white;
+  background: darkblue;
 }
 
 body {
-  color: 'darkgrey';
+  color: darkgrey;
+  background: lightgrey;
+}
+
+input[type=radio]#black {
+  color: black;
+}
+
+input[type=radio]#grey {
+  color: grey;
+}
+
+input[type=radio]#white {
+  color: white;
+}
+
+input[type=radio]#blue {
+  color: blue;
+}
+
+input[type=radio]#red {
+  background: red;
+}
+
+input[type=radio]#green {
+  color: green;
+}
+
+input[type=radio]#yellow {
+  color: yellow;
+}
+
+input[type=radio]#orange {
+  color: orange;
+}
+
+input[type=radio]#purple {
+  color: purple;
+}
+
+input[type=radio]#pink {
+  color: pink;
 }

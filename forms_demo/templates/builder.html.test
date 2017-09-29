@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}Builder{% endblock %}
+
+{% block content %}
+<p>This is the builder page</p>
+<p>I have access to DEFAULTS. Here is a snippet: {{ options.get('colours', "uh oh, I couldn't find colours") }}</p>
+<p>I can also execute Python code, such as loops: {% for element in [1, 2, 3, 4] %} {{ element }} {% endfor %}</p>
+<p>And conditionals: {% if 1==2 %}This is False{% endif %} {% if 1 == 1%}This is True{% endif %}.</p>
+
+{% endblock %}
+
