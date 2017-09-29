@@ -2,9 +2,15 @@ import json
 
 import flask
 
+from options import DEFAULTS # Note that we can import variables as well as classes
+
+
+
+
 app = flask.Flask(__name__)
 
 cookie_name = 'avatar'
+
 
 
 def get_saved_data():
@@ -29,13 +35,24 @@ def get_saved_data():
 
     
 
-
 @app.route('/')
 def index():
     saved_data = get_saved_data()
     context = {'saves' : saved_data}
 
     return flask.render_template('index.html', **context)
+
+
+
+@app.route('/builder')
+def builder():
+    saved_data = get_saved_data()
+    context = {'saves' : saved_data,
+               'options' : DEFAULTS}
+    
+    return flask.render_template('builder.html', **context)
+
+
 
 # Here we are creating a route and a method to handle a user submitting the call to action button on the index page
 #
